@@ -55,9 +55,9 @@ useEffect(() => {
 }
       </section>
       <section>
-        <Image src={images[currentImage]} alt={`${images[currentImage]}`} onClick={isDesktop ? () => handleModal : undefined} className="h-[300px] md:rounded-xl" />
+        <Image src={images[currentImage]} alt={`${images[currentImage]}`} onClick={isDesktop ? handleModal : undefined} className="h-[300px] md:rounded-xl" />
       </section>
-      <section className="flex justify-between absolute w-full top-5/12 px-3">
+      <section className="flex justify-between absolute w-full md:top-4/12 top-5/12 px-3">
         <div className="p-3 bg-white rounded-[50%] flex items-center justify-center" onClick={handlePrev}>
           <svg className="h-3 w-3 stroke-2 text-[#1D2024]" xmlns="http://www.w3.org/2000/svg" width="12" height="18" viewBox="0 0 12 18">
             <path d="M11 1 3 9l8 8" stroke="currentColor" strokeWidth="5" fill="none" fillRule="evenodd"/>
@@ -113,52 +113,71 @@ interface ImageModalProps {
 
 }
 
-const ImageModal = ( {thumbnail, handleNext, handlePrev, images, currentImage, setCurrentImage}: ImageModalProps) => {
+const ImageModal = ({ thumbnail, handleNext, handlePrev, images, currentImage, setCurrentImage }: ImageModalProps) => {
   return (
-    <div className="fixed">
-      <section>
-        <Image src={images[currentImage]} alt={`${images[currentImage]}`} className="h-[300px] md:rounded-xl" />
-      </section>
-      <section className="flex justify-between absolute w-full top-5/12 px-3">
-        <div className="p-3 bg-white rounded-[50%] flex items-center justify-center" onClick={handlePrev}>
-          <svg className="h-3 w-3 stroke-2 text-[#1D2024]" xmlns="http://www.w3.org/2000/svg" width="12" height="18" viewBox="0 0 12 18">
-            <path d="M11 1 3 9l8 8" stroke="currentColor" strokeWidth="5" fill="none" fillRule="evenodd"/>
+    <div className="fixed inset-0 bg-black/80 flex flex-col items-center justify-center z-50">
+      {/* Main image */}
+      <section className="relative flex items-center justify-center">
+        <Image
+          src={images[currentImage]}
+          alt={`Image ${currentImage}`}
+          className="w-[350px] h-[300px] object-cover rounded-xl"
+        />
+
+        {/* Prev Button */}
+        <div
+          className="absolute left-[-40px] p-4 bg-white rounded-full flex items-center justify-center cursor-pointer"
+          onClick={handlePrev}
+        >
+          <svg
+            className="h-4 w-4 text-[#1D2024]"
+            xmlns="http://www.w3.org/2000/svg"
+            width="12"
+            height="18"
+            viewBox="0 0 12 18"
+          >
+            <path d="M11 1 3 9l8 8" stroke="currentColor" strokeWidth="5" fill="none" />
           </svg>
-          {/* <Image
-            src={Previous}
-            alt="previous"
-            onClick={handlePrev}
-            height={7}
-            width={7}
-          /> */}
         </div>
-        <div className="p-3 bg-white rounded-[50%] flex items-center justify-center" onClick={handleNext}>
-          <svg className="h-3 w-3 stroke-2 text-[#1D2024]" xmlns="http://www.w3.org/2000/svg" width="13" height="18" viewBox="0 0 13 18">
-            <path d="m2 1 8 8-8 8" stroke="currentColor" strokeWidth="5" fill="none" fillRule="evenodd"/>
+
+        {/* Next Button */}
+        <div
+          className="absolute right-[-40px] p-4 bg-white rounded-full flex items-center justify-center cursor-pointer"
+          onClick={handleNext}
+        >
+          <svg
+            className="h-4 w-4 text-[#1D2024]"
+            xmlns="http://www.w3.org/2000/svg"
+            width="13"
+            height="18"
+            viewBox="0 0 13 18"
+          >
+            <path d="m2 1 8 8-8 8" stroke="currentColor" strokeWidth="5" fill="none" />
           </svg>
-          {/* <Image
-            src={Next}
-            alt="next"
-            onClick={handleNext}
-            height={10}
-            width={10}
-          /> */}
         </div>
       </section>
+
+      {/* Thumbnails */}
       <section className="hidden md:flex gap-4 mt-8">
-        {thumbnail.map((image, index) => {
-          return (
-            <div key={index} className="relative cursor-pointer overflow-hidden">
-              <Image src={image} alt={`Image ${currentImage}`} onClick={() => setCurrentImage(index)} className={`${currentImage === index ? 'border-3 border-[#FF8F44]' : ''} rounded-xl`}/>
-              {currentImage === index && (
-                <div className="absolute inset-0 bg-white/60 rounded-xl"></div>
-              )}
-            </div>
-          )
-        })}
+        {thumbnail.map((image, index) => (
+          <div
+            key={index}
+            className={`relative cursor-pointer overflow-hidden rounded-xl border-2 ${
+              currentImage === index ? "border-[#FF8F44]" : "border-transparent"
+            }`}
+            onClick={() => setCurrentImage(index)}
+          >
+            <Image
+              src={image}
+              alt={`Thumbnail ${index}`}
+              className="w-[100px] h-[100px] object-cover rounded-xl"
+            />
+            {currentImage === index && (
+              <div className="absolute inset-0 bg-white/50 rounded-xl"></div>
+            )}
+          </div>
+        ))}
       </section>
     </div>
-  )
-}
-
-
+  );
+};

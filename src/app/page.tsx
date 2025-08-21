@@ -151,14 +151,14 @@ const ECommerce = () => {
           {cartActivated && <Cart items={items} handleDelete={handleDelete}/>}
         </div>
       </section>
-      <section className="flex px-[8%] mt-15 gap-20">
+      <section className="flex px-[8%] mt-20 gap-20">
         <div>
           <Images currentImage={currentImage} setCurrentImage={setCurrentImage} isImageModalActive={isImageModalActive} setIsImageModalActive={setIsImageModalActive}/>
         </div>
         <div>
           <section className="p-4 flex flex-col gap-1">
             <h2 className="text-[#6E727A] font-bold">Sneaker Company</h2>
-        <p className="font-bold text-3xl mb-2">Fall Limited Edition Sneakers</p>
+        <p className="font-bold text-3xl mb-6">Fall Limited Edition Sneakers</p>
         <p className="text-[#BFC6D4] font-medium">
           These low-profile sneakers are your perfect casual wear companion.
           Featuring a durable rubber outer sole, they’ll withstand everything

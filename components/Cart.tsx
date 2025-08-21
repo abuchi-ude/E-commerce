@@ -18,7 +18,7 @@ const Cart = ( { items, handleDelete } : CartProps ) => {
 
   
   return (
-    <div className='absolute z-50  pt-2 px-3  pb-8 w-full h-full'>
+    <div className='absolute z-50 md:right-0 md:top-18 md:rounded-lg md:text-xs md:bg-white  shadow-sm md:h-fit md:z-50  pt-2 px-3  pb-8 w-full h-full  md:w-fit'>
       <div className='bg-white h-full rounded-lg'>
         <section className='border-b h-3/10 p-5'>
           <h1 className='font-bold'>Cart</h1>
@@ -32,7 +32,7 @@ const Cart = ( { items, handleDelete } : CartProps ) => {
                 const unitPrice = parseFloat(item.price.replace("$", ""));
                 const totalPrice = unitPrice * item.number;
                 return (
-                <div key={index} className='flex justify-start gap-4'>
+                <div key={index} className='flex justify-start gap-4 mt-5'>
                 <section >
                   <Image
                     src={item.img}
@@ -43,7 +43,7 @@ const Cart = ( { items, handleDelete } : CartProps ) => {
                   />
                   
                 </section>
-                <section className="flex flex-col text-[#6E727A]  flex-grow ">
+                <section className="flex flex-col text-[#6E727A]  flex-grow mt-2">
                   
                     <p>{item.name}</p>
                     <p className=''>
@@ -61,7 +61,7 @@ const Cart = ( { items, handleDelete } : CartProps ) => {
             )})
         )}
         <div className=' w-[85%]'>
-          {items.length > 0 && (<button className='text-black bg-[#FF8F44] py-4 w-full rounded-md'>
+          {items.length > 0 && (<button className='text-black bg-[#FF8F44] py-4 md:py-2 font-bold w-full rounded-md'>
             Checkout
           </button>)}
         </div>
