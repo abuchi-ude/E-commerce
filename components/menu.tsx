@@ -4,7 +4,7 @@ import Image from 'next/image';
 
 interface MenuProps {
   handleIsMenuActive: () => void;
-  isMenuActive: Boolean;
+  isMenuActive: boolean;
 }
 
 const Menu = ({handleIsMenuActive, isMenuActive}: MenuProps) => {
