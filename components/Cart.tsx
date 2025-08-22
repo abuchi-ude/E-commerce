@@ -18,15 +18,15 @@ const Cart = ( { items, handleDelete } : CartProps ) => {
 
   
   return (
-    <div className='absolute z-50 md:right-0 md:top-18 md:rounded-lg md:text-xs md:bg-white  shadow-sm md:h-fit md:z-50  pt-2 px-3  pb-8 w-full h-full  md:w-fit'>
+    <div className='absolute z-50 md:right-0 md:top-18 md:rounded-lg md:text-xs md:bg-white  shadow-xl md:h-fit md:z-50  pt-2 px-3  pb-8 w-full h-full  md:w-fit'>
       <div className='bg-white h-full rounded-lg'>
         <section className='border-b h-3/10 p-5'>
           <h1 className='font-bold'>Cart</h1>
 
         </section>
-        <section className='h-7/10 flex flex-col gap-4 items-center justify-center'>
+        <section className='h-7/10  flex flex-col gap-4 items-center justify-center'>
        {items.length === 0 ? (
-        <div className=' text-[#6E727A] font-bold w-[85%] text-center'><p>Your cart is empty</p></div>
+        <div className=' text-[#6E727A] font-bold w-[85%] md:w-[200px] md:h-[80px] md:pt-10 md:flex md:items-center md:justify-center text-center'><p>Your cart is empty</p></div>
         ) : (
               items.map((item, index) => {
                 const unitPrice = parseFloat(item.price.replace("$", ""));
@@ -61,7 +61,7 @@ const Cart = ( { items, handleDelete } : CartProps ) => {
             )})
         )}
         <div className=' w-[85%]'>
-          {items.length > 0 && (<button className='text-black bg-[#FF8F44] py-4 md:py-2 font-bold w-full rounded-md'>
+          {items.length > 0 && (<button className='text-black cursor-pointer bg-[#FF8F44] py-4 md:py-2 font-bold w-full rounded-md'>
             Checkout
           </button>)}
         </div>

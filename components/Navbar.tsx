@@ -12,7 +12,7 @@ interface NavProps {
   handleIsMenuActive: () => void;
 }
 const Nav = ( {handleCart, count, handleIsMenuActive}: NavProps ) => {
-   
+  //  const [active, setActive] = React.useState<'Collections' | 'Men' | 'Women' | 'About' | 'Contact'>('Collections')
   return (
     <div className='relative '>
     <nav className='flex justify-between p-6 w-full  relative md:hidden'>
@@ -23,7 +23,7 @@ const Nav = ( {handleCart, count, handleIsMenuActive}: NavProps ) => {
       <div className='flex items-center gap-6'>
         <div className='flex'>
           <Image src={Cart} alt='Cart' height={20} width={20} onClick={handleCart} className=''/>
-          <p className='text-white bg-[#FF8F44] absolute top-4 right-15 text-[12px] px-2 rounded-[20px]'>{count}</p>
+          <p className={`${count <= 0 ? 'hidden' : 'block' } text-white bg-[#FF8F44] absolute top-4 right-15 text-[12px] px-2 rounded-[20px]`}>{count}</p>
         </div>
         <Image src={Avatar} alt='Avatar' width={20} height={20}/>
       </div>
@@ -31,13 +31,13 @@ const Nav = ( {handleCart, count, handleIsMenuActive}: NavProps ) => {
     {/* <div className=''>
     NAV FOR BIGGER SCREEN
     </div> */}
-    <nav className='hidden md:flex justify-between p-6 mb-4 w-full relative border-b border-[#d8dce6]'>
+    <nav className='hidden md:flex justify-between mb-4 w-full relative border-b border-[#c4ccdd]'>
       <div className='flex items-center gap-8'>
         <Image src={Logo} alt='logo-sneakers' height={20}/>
         <ul className='flex gap-4'>
                     {['Collections', 'Men', 'Women', 'About', 'Contact'].map((item, index) => {
                         return(
-                            <li key={index} className='text-[#BFC6D4] text-xs'>
+                            <li key={index} className='text-[#BFC6D4] text-xs py-8 hover:border-b-3 cursor-pointer hover:border-b-[#FF8F44]'>
                                 {item}
                             </li>
                         )
@@ -46,10 +46,10 @@ const Nav = ( {handleCart, count, handleIsMenuActive}: NavProps ) => {
       </div>
       <div className='flex items-center gap-6'>
         <div className='flex'>
-          <Image src={Cart} alt='Cart' height={20} width={20} onClick={handleCart} className=''/>
-          <p className='text-white bg-[#FF8F44] absolute top-6 right-19 text-[12px] px-2 rounded-[20px]'>{count}</p>
+          <Image src={Cart} alt='Cart' height={20} width={20} onClick={handleCart} className='cursor-pointer'/>
+          <p className={`${count <= 0 ? 'hidden' : 'block' } text-white bg-[#FF8F44] absolute top-6 right-19 text-[12px] px-2 rounded-[20px]`}>{count}</p>
         </div>
-        <Image src={Avatar} alt='Avatar' width={40} height={40}/>
+        <Image src={Avatar} alt='Avatar' width={40} height={40} className='hover:border-3 hover:border-[#FF8F44] hover:rounded-[50%]'/>
       </div>
     </nav>
     </div>
